@@ -37,12 +37,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 3rd party apps
+    "baton",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # 3rd party apps
+    "baton.autodiscover",
 ]
 
 MIDDLEWARE = [
@@ -129,3 +133,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
+
+
+# Django admin customization with Baton
+BATON = {
+    "SITE_HEADER": "Events App",
+    "SITE_TITLE": "Events App",
+    "INDEX_TITLE": "Site administration",
+    "SUPPORT_HREF": "https://github.com/mmostafa74/events-web-app",
+    "COPYRIGHT": "copyright © <a href='https://github.com/mmostafa74'>mmostafa74</a>",
+    "POWERED_BY": "<a href='https://github.com/mmostafa74'>mmostafa74</a>",
+    "CONFIRM_UNSAVED_CHANGES": True,
+    "SHOW_MULTIPART_UPLOADING": True,
+    "ENABLE_IMAGES_PREVIEW": True,
+    "CHANGELIST_FILTERS_IN_MODAL": True,
+    "CHANGELIST_FILTERS_ALWAYS_OPEN": False,
+    "COLLAPSABLE_USER_AREA": False,
+    "MENU_ALWAYS_COLLAPSED": False,
+    "MENU_TITLE": "Menu",
+    "GRAVATAR_DEFAULT_IMG": "retro",
+    "MENU": (
+        {"type": "title", "label": "main", "apps": ("auth",)},
+        {"type": "model", "label": "Users", "name": "user", "app": "users"},
+        {"type": "model", "label": "Groups", "name": "group", "app": "auth"},
+    ),
+}
