@@ -103,6 +103,14 @@ google-auth-httplib2 = "*"
 requests = "*"
 
 [[package]]
+name = "django-crispy-forms"
+version = "1.10.0"
+description = "Best way to have Django DRY forms"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[[package]]
 name = "django-environ"
 version = "0.4.5"
 description = "Django-environ allows you to utilize 12factor inspired environment variables to configure your Django application."
@@ -407,7 +415,7 @@ socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "9dcf182fc5576673e227aa0f0fc0e4b9b2919a9e05f57d9de825ac7f85aba8d9"
+content-hash = "255d83b87cfd65d7431f8221c1dcd5f0629f7a28b53349d849ad1d35f7a06253"
 
 [metadata.files]
 appdirs = [
@@ -444,6 +452,10 @@ django = [
 django-baton = [
     {file = "django-baton-1.13.2.tar.gz", hash = "sha256:de992b67a9c15ae35f581d1b6dfd7e7d42dc9f412eda3e97b700162f150bc4c0"},
     {file = "django_baton-1.13.2-py3-none-any.whl", hash = "sha256:94d442fcce25ab4b9bde28b93648d21ce921e5a7078fafc1222a96bc5058212b"},
+]
+django-crispy-forms = [
+    {file = "django-crispy-forms-1.10.0.tar.gz", hash = "sha256:d3f808d20cafe20fd38a49a47e72db1fd519fcf31bef4f47f008619336a3ebff"},
+    {file = "django_crispy_forms-1.10.0-py3-none-any.whl", hash = "sha256:92ed3fdc52c08d21d60adbb9de24e432c590e66e894f43cee0974fc959209976"},
 ]
 django-environ = [
     {file = "django-environ-0.4.5.tar.gz", hash = "sha256:6c9d87660142608f63ec7d5ce5564c49b603ea8ff25da595fd6098f6dc82afde"},
