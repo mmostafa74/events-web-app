@@ -11,12 +11,12 @@
       {% with results.count as total_results %}Found {{ total_results }} result{{ total_results|pluralize }}{% endwith %}
     </h3>
     {% for event in results %}
-      <h4><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></h4>
+      <h4><a href="{{ event.slug }}">{{ event.title }}</a></h4>
       {{ event.description }}
       {% empty %}
       <p>There are no results for your query.</p>
     {% endfor %}
-    <p><a href="{% url 'events:event_search' %}">Search again</a></p>
+    <p><a href="{% url 'events:event_search' %}" class="btn btn-primary">Search again</a></p>
   {% else %}
     <h1>Search for posts</h1>
     <form method="get">
