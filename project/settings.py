@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     # Local applications
     "applications.users.apps.UsersConfig",
+    "applications.events.apps.EventsConfig",
     # 3rd party apps
     "baton.autodiscover",
 ]
@@ -144,7 +145,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 AUTH_USER_MODEL = "users.User"
 
 # Login/Logout Redirection
-LOGIN_REDIRECT_URL = "users:dashboard"
+LOGIN_REDIRECT_URL = "events:event_list"
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"
 
@@ -157,7 +158,7 @@ APPEND_SLASH = True
 BATON = {
     "SITE_HEADER": "Events App",
     "SITE_TITLE": "Events App",
-    "INDEX_TITLE": "Site administration",
+    "INDEX_TITLE": "App administration",
     "SUPPORT_HREF": "https://github.com/mmostafa74/events-web-app",
     "COPYRIGHT": "copyright © <a href='https://github.com/mmostafa74'>mmostafa74</a>",
     "POWERED_BY": "<a href='https://github.com/mmostafa74'>mmostafa74</a>",
@@ -173,6 +174,7 @@ BATON = {
     "MENU": (
         {"type": "title", "label": "main", "apps": ("auth",)},
         {"type": "model", "label": "Users", "name": "user", "app": "users"},
+        {"type": "model", "label": "Events", "name": "event", "app": "events"},
         {"type": "model", "label": "Groups", "name": "group", "app": "auth"},
     ),
 }
