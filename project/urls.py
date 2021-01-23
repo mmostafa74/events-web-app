@@ -22,4 +22,6 @@ urlpatterns = [
     path("baton/", include("baton.urls")),
     path("users/", include("django.contrib.auth.urls")),
     path("users/", include("applications.users.urls", namespace="users")),
+    path("events/", include("applications.events.urls", namespace="events")),
+    # path("", include("applications.events.urls", namespace="events")),
 ]
