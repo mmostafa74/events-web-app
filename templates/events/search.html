@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+  {% if query %}
+    <h1>Posts containing "{{ query }}"</h1>
+    <h3>
+      {% with results.count as total_results %}Found {{ total_results }} result{{ total_results|pluralize }}{% endwith %}
+    </h3>
+    {% for event in results %}
+      <h4><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></h4>
+      {{ event.description }}
+      {% empty %}
+      <p>There are no results for your query.</p>
+    {% endfor %}
+    <p><a href="{% url 'events:event_search' %}">Search again</a></p>
+  {% else %}
+    <h1>Search for posts</h1>
+    <form method="get">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button class="btn btn-success" type="submit">Search</button>
+    </form>
+  {% endif %}
+{% endblock %}

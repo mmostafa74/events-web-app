@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Events App{% endblock %}
+
+{% block content %}
+  {% for event in events %}
+    <div class="card text-center" style="padding: 1%; margin: 1%;">
+      <h5 class="card-header">{{ event.title }}</h5>
+      <div class="card-body">
+        <h5 class="card-title">Event will be held on: {{ event.date }}</h5>
+        <p class="card-text">Added by: {{ event.author.get_username }}</p>
+        <a href="{{ event.slug }}" class="btn btn-primary">Details</a>
+      </div>
+      <div class="card-footer text-muted">
+        Created on: {{ event.created }}
+      </div>
+    </div>
+  {% endfor %}
+
+  {% include "events/pagination.html" with page=events %}
+{% endblock %}
