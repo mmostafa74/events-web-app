@@ -6,7 +6,7 @@
 - Install [docker](https://www.docker.com/products/docker-desktop).
 - Install [docker-compose](https://docs.docker.com/compose/).
 - Install [Poetry](https://python-poetry.org/).
-- Clone the project using [git](https://git-scm.com/downloads).
+- Clone the project using git.
 - Go to project files.
 - Copy `.env.example` to `.env`, and change values (if needed).
 - Run `poetry install` to install dependencies and it will create a [virtualenv](https://virtualenv.pypa.io/en/latest/) automatically.
