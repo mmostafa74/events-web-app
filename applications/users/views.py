@@ -1,13 +1,7 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
 from applications.users.forms import CustomUserCreationForm
-
-
-@login_required
-def dashboard(request):
-    return render(request, "users/dashboard.html", {"section": "dashboard"})
 
 
 def register(request):
@@ -19,7 +13,7 @@ def register(request):
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(email=email, password=raw_password)
             login(request, user)
-            return redirect("users:dashboard")
+            return redirect("events")
     else:
         form = CustomUserCreationForm()
     return render(request, "users/register.html", {"form": form})

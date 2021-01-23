@@ -40,7 +40,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     """Custom user model that supports using email instead of username"""
 
     email = models.EmailField(_("email address"), unique=True)
-    name = models.CharField(max_length=150)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
@@ -52,3 +51,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+    def get_username(self):
+        return self.email.split("@")[0]
