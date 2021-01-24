@@ -12,6 +12,7 @@ class Event(models.Model):
     slug = models.SlugField(max_length=250, unique_for_date="created")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    attendees = models.ManyToManyField(User, blank=True, related_name="attendees")
 
     class Meta:
         ordering = ("-date",)
