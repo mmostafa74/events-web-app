@@ -22,9 +22,11 @@ class TestEventViews(TestCase):
             description="Test Description!",
             date="2020-3-24",
             author=self.user,
+            slug="testing",
         )
 
     def test_add_event_template(self):
+        self.client.force_login(self.user)
         response = self.client.get(reverse("events:add_event"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "events/add_event.html")
@@ -32,6 +34,7 @@ class TestEventViews(TestCase):
         self.assertNotContains(response, "Hi there! I should not be on the page.")
 
     def test_add_event_form(self):
+        self.client.force_login(self.user)
         response = self.client.get(reverse("events:add_event"))
         form = response.context.get("form")
         self.assertIsInstance(form, EventForm)
@@ -42,6 +45,7 @@ class TestEventViews(TestCase):
         self.assertEqual(view.func, add_event)
 
     def test_add_event_view_response(self):
+        self.client.force_login(self.user)
         response = self.client.post(
             reverse("events:add_event"),
             {
@@ -59,7 +63,7 @@ class TestEventViews(TestCase):
 
     def test_edit_event_view(self):
         response = self.client.post(
-            reverse("events:edit_event", args=f"{str(self.event.slug)}"),
+            reverse("events:edit_event", kwargs={"event": str(self.event.slug)}),
             {
                 "title": "Updated title",
                 "description": "Updated text",
@@ -69,9 +73,9 @@ class TestEventViews(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_post_delete_view(self):
-
+        self.client.force_login(self.user)
         response = self.client.get(
-            reverse("events:delete_event", args=str(self.event.slug))
+            reverse("events:delete_event", kwargs={"event": str(self.event.slug)})
         )
 
         self.assertEqual(response.status_code, 200)

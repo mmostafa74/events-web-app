@@ -1,5 +1,6 @@
 from django.test import TestCase, tag
 from django.contrib.auth import get_user_model
+from django.db.utils import IntegrityError
 
 from applications.events.models import Event
 
@@ -30,7 +31,7 @@ class TestEventModel(TestCase):
         self.assertEqual(event.author, self.user)
 
     def test_new_event_invalid_user(self):
-        with self.assertRaises(ValueError):
+        with self.assertRaises(IntegrityError):
             Event.objects.create(
                 title=self.title,
                 description=self.description,
@@ -39,7 +40,7 @@ class TestEventModel(TestCase):
             )
 
     def test_new_event_invalid_date(self):
-        with self.assertRaises(ValueError):
+        with self.assertRaises(IntegrityError):
             Event.objects.create(
                 title=self.title,
                 description=self.description,

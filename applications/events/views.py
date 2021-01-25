@@ -44,7 +44,7 @@ def edit_event(request, event):
 def delete_event(request, event):
     event_details = get_object_or_404(Event, slug=event)
     event_details.delete()
-    return render("events:event_list")
+    return render(request, "events/edit_event.html")
 
 
 @login_required
