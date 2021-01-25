@@ -15,6 +15,8 @@ class TestRegisterView(TestCase):
     def setUp(self) -> None:
         url = reverse("users:register")
         self.response = self.client.get(url)
+        self.email = "test@test.com"
+        self.password = "testpass123"
 
     def test_register_template(self):
         self.assertEqual(self.response.status_code, 200)
