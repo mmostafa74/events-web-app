@@ -69,4 +69,58 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
   </body>
+
+  {% csrf_token %}
+  <script>
+    const csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var bookBtn = document.getElementById("book");
+      bookBtn.addEventListener("click", function() {
+        fetch(`http://127.0.0.1:8000/events/attendee/${this.dataset.event_slug}`, {
+          method: "POST",
+          headers: {
+            'content-Type':'application/json',
+            'X-CSRFToken': csrf_token
+          }
+        }).then((response) => {
+          return response.json()
+        })
+        .then((response) => {
+          if(response["status"] == "success")
+          {
+            window.location.replace(`/events/${this.dataset.event_slug}`);
+          }
+          else
+          {
+            console.log(response)
+          }
+        })
+      })
+    });
+
+    var withdrawBtn = document.getElementById("withdraw").addEventListener("click", function() {
+      fetch(`http://127.0.0.1:8000/events/attendee/${this.dataset.event_slug}`,{
+        method: "DELETE",
+        headers:{
+          'content-Type':'application/json',
+          'X-CSRFToken': csrf_token
+        }
+      }).then((response) => {
+        return response.json()
+      })
+      .then((response) => {
+        if(response["status"] == "success")
+        {
+          window.location.replace("/events/");
+        }
+        else
+        {
+          console.log(response)
+        }
+      })
+    });
+
+  </script>
+
 </html>

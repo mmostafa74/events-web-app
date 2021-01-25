@@ -53,7 +53,7 @@ def attendees_control(request, event):
     if request.method == "POST":
         event_details = Event.objects.filter(slug=event)
         try:
-            event_details[0].participants.add(attendee_id)
+            event_details[0].attendees.add(attendee_id)
             response = {"status": "success"}
         except Exception as e:
             print(e)
@@ -62,7 +62,7 @@ def attendees_control(request, event):
     if request.method == "DELETE":
         event_details = Event.objects.filter(slug=event)
         try:
-            event_details[0].participants.remove(attendee_id)
+            event_details[0].attendees.remove(attendee_id)
             response = {"status": "success"}
         except Exception as e:
             print(e)
